@@ -26,7 +26,7 @@ public class Parser {
     private List<WorkTime> parseTable(Element table) {
         List<WorkTime> workTimes = new ArrayList<>();
 
-        Elements trs = table.getElementsByTag("tr");
+        Elements trs = table.getElementsByTag("tr"); //Há casos onde não tem tr. FIXME
 
         for (Element tr : trs) {
             Elements tds = tr.getElementsByTag("td");
