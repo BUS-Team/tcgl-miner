@@ -22,6 +22,7 @@ public class Asker {
         RouteSet routeSet = this.getRoutes("Linhas Convencionais");
 
         for (Route r : routeSet.getRoutes()) {
+            /*Este modelo não dá certo. Será preciso fazer combinações de acordo com o FIXME #3 */
             mediator.toRoute(r).starting(r.getCode()).ending(TERMINAL).extractWorkTimes();
             mediator.toRoute(r).starting(TERMINAL).ending(r.getCode()).extractWorkTimes();
         }

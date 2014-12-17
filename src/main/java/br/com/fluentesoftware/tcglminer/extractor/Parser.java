@@ -12,8 +12,10 @@ public class Parser {
     public List<WorkTime> scheduleTableFromDocument(Document doc) {
         List<WorkTime> workTimes = new ArrayList<>();
 
-        Element t1 = doc.getElementById("idTabHoraria");
-        workTimes.addAll(this.parseTable(t1));
+        try {
+            Element t1 = doc.getElementById("idTabHoraria");
+            workTimes.addAll(this.parseTable(t1));
+        } catch (NullPointerException e) { }
 
         try {
             Element t2 = doc.getElementById("idTabHoraria2");
