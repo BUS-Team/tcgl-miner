@@ -12,13 +12,15 @@ public class Parser {
     public List<WorkTime> scheduleTableFromDocument(Document doc) {
         List<WorkTime> workTimes = new ArrayList<>();
 
-        Element t1 = doc.getElementById("idTabHoraria");
-        workTimes.addAll(this.parseTable(t1));
+        try {
+            Element t1 = doc.getElementById("idTabHoraria");
+            workTimes.addAll(this.parseTable(t1));
+        } catch (NullPointerException e) { }
 
         try {
             Element t2 = doc.getElementById("idTabHoraria2");
             workTimes.addAll(this.parseTable(t2));
-        } catch (NullPointerException e) { }
+        } catch (NullPointerException e) { /* There isn't table 2 */}
 
         return workTimes;
     }
@@ -26,7 +28,7 @@ public class Parser {
     private List<WorkTime> parseTable(Element table) {
         List<WorkTime> workTimes = new ArrayList<>();
 
-        Elements trs = table.getElementsByTag("tr");
+        Elements trs = table.getElementsByTag("tr"); //Há casos onde não tem tr. FIXME
 
         for (Element tr : trs) {
             Elements tds = tr.getElementsByTag("td");
@@ -37,7 +39,7 @@ public class Parser {
             try {
                 WorkTime workTime = new WorkTime(departure, arrive);
                 workTimes.add(workTime);
-            } catch (NullPointerException e) { }
+            } catch (NullPointerException e) { /* Cause html has bad quality */ }
         }
         return workTimes;
     }
