@@ -13,15 +13,7 @@ public class BusType {
         return buscarlinha;
     }
 
-    public void setBuscarlinha(String buscarlinha) {
-        this.buscarlinha = buscarlinha;
-    }
-
     public Float getRnd() {
         return rnd;
-    }
-
-    public void setRnd(Float rnd) {
-        this.rnd = rnd;
     }
 }
